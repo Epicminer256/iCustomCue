@@ -1,3 +1,5 @@
 publish
 obj
 bin
+Cargo.lock
+target/
