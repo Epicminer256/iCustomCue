@@ -1,9 +1,8 @@
 mod corshair;
 
 fn main() {
-    let instance = corshair::Corsair{
-        path: "ur papa's place",
-        urmama: true,
+    let instance = corshair::corshair::Corsair{
+        path: "ur papa's place".to_string(),
     };
     println!("{}", instance.path)
     
