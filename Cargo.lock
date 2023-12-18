@@ -3,5 +3,5 @@
 version = 3
 
 [[package]]
-name = "iCustomCue"
+name = "custom_cue"
 version = "0.1.0"

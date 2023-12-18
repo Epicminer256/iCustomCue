@@ -1,18 +1,6 @@
 // use std::process::Command;
-// for when using cli commands and stuffs
-pub mod corshair{
-    pub struct Corsair {
-        pub path: String, 
-    } 
-    impl Corsair {
-        pub fn new(passed_string: &str) -> Self {
-            Corsair {
-                path: passed_string.to_string()
-            }
-        }
+use std::path::Path;
 
-        pub fn get_path(&self){
-            println!("{}", self.path)
-        }
-    }
+pub fn is_icue_path(path: &str) -> bool{
+    return Path::new(&path).is_dir();
 }
