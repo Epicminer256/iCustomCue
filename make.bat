@@ -8,6 +8,8 @@ if "%1"=="all" goto all
 if "%1"=="build" goto build
 if "%1"=="clean-build" goto all
 if "%1"=="clean" goto clean
+
+echo Command not found
 goto done
 
 :all

@@ -35,7 +35,7 @@ public partial class MainMenuForm : Form
 
         if(File.Exists(iCue_Path_ConfigPath)){
             iCue_Path = File.ReadAllText(iCue_Path_ConfigPath);
-            if(!File.Exists(System.IO.Path.Combine(iCue_Path,"iCUE.exe"))){
+            if(!File.Exists(System.IO.Path.Combine(iCue_Path))){
                 MessageBox.Show("The file \"iCuePath\" in your config points to a invalid path. Delete that file and start this program again to fix it.");
                 this.Close();
                 Application.Exit();
