@@ -39,12 +39,13 @@ public partial class MainMenuForm : Form
                 MessageBox.Show("The file \"iCuePath\" in your config points to a invalid path. Delete that file and start this program again to fix it.");
                 this.Close();
                 Application.Exit();
+                System.Environment.Exit(1); 
             }
         } else {
             if(File.Exists("C:\\Program Files\\Corsair\\Corsair iCUE5 Software\\iCUE.exe")){
                 iCue_Path = "C:\\Program Files\\Corsair\\CORSAIR iCUE5 Software\\";
             }
-            if(File.Exists("C:\\Program Files (x86)\\Corsair\\CORSAIR iCUE5 Software\\iCUE.exe")){
+            if(File.Exists("C:\\Program Files (x86)\\Corsair\\CORSAIR iCUE5 Software\\")){
                 iCue_Path = "C:\\Program Files (x86)\\Corsair\\CORSAIR iCUE5 Software\\";
             }
             while(iCue_Path == ""){
