@@ -36,12 +36,10 @@ public partial class MainMenuForm : Form
         if(File.Exists(iCue_Path_ConfigPath)){
             iCue_Path = File.ReadAllText(iCue_Path_ConfigPath);
             if(!File.Exists(System.IO.Path.Combine(iCue_Path,"iCUE.exe"))){
-                MessageBox.Show("The file \"iCuePath\" in your config points to a invalid path. Delete that file and start this program again to fix it.");
-                this.Close();
-                Application.Exit();
-                System.Environment.Exit(1); 
+                iCue_Path = "";
             }
-        } else {
+        }
+        if(iCue_Path == ""){
             if(File.Exists("C:\\Program Files\\Corsair\\Corsair iCUE5 Software\\iCUE.exe")){
                 iCue_Path = "C:\\Program Files\\Corsair\\CORSAIR iCUE5 Software\\";
             }
@@ -69,7 +67,6 @@ public partial class MainMenuForm : Form
             }
             File.WriteAllText(iCue_Path_ConfigPath, iCue_Path);
         }
-
         string Backup_Sys_Path = System.IO.Path.Combine(iCue_Path, "sounds\\backup");
         string Current_Sound_Path = System.IO.Path.Combine(iCue_Path, "sounds\\default");
         
@@ -200,7 +197,7 @@ public partial class MainMenuForm : Form
         void Restart_iCue_Click(object sender, EventArgs e){
             System.Diagnostics.Process.Start("C:\\Windows\\System32\\taskkill.exe"," /F /IM iCUE.exe");
             Thread.Sleep(2000);
-            System.Diagnostics.Process.Start(System.IO.Path.Combine(iCue_Path,"iCUE.exe"));
+            System.Diagnostics.Process.Start("\""+System.IO.Path.Combine(iCue_Path,"iCUE.exe")+"\"");
         }
         Restart_iCue.Click += Restart_iCue_Click;
 		
@@ -251,7 +248,7 @@ public partial class MainMenuForm : Form
             foreach(var file in allBackupFiles){
                 File.Copy(file, System.IO.Path.Combine( Current_Sound_Path,Path.GetFileName(file)), true);
             }
-            System.Diagnostics.Process.Start(System.IO.Path.Combine(iCue_Path,"iCUE.exe"));
+            System.Diagnostics.Process.Start("\""+System.IO.Path.Combine(iCue_Path,"iCUE.exe")+"\"");
             MessageBox.Show("Done!");
         }
         RestoreFactory.Click += RestoreFactory_Click;
@@ -343,7 +340,7 @@ public partial class PickSoundpack : Form
 				File.Copy(file, outputFilePath, true);
 				
             }
-			System.Diagnostics.Process.Start(System.IO.Path.Combine(iCue_Path,"iCUE.exe"));
+			System.Diagnostics.Process.Start("\""+System.IO.Path.Combine(iCue_Path,"iCUE.exe")+"\"");
 			MessageBox.Show("Now Using: "+selectedItem);
 		}
 		
