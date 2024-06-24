@@ -35,17 +35,17 @@ public partial class MainMenuForm : Form
 
         if(File.Exists(iCue_Path_ConfigPath)){
             iCue_Path = File.ReadAllText(iCue_Path_ConfigPath);
-            if(!File.Exists(System.IO.Path.Combine(iCue_Path))){
+            if(!File.Exists(System.IO.Path.Combine(iCue_Path,"iCUE.exe"))){
                 MessageBox.Show("The file \"iCuePath\" in your config points to a invalid path. Delete that file and start this program again to fix it.");
                 this.Close();
                 Application.Exit();
             }
         } else {
             if(File.Exists("C:\\Program Files\\Corsair\\Corsair iCUE5 Software\\iCUE.exe")){
-                iCue_Path = "C:\\Program Files\\Corsair\\CORSAIR iCUE5 Software\\iCUE.exe";
+                iCue_Path = "C:\\Program Files\\Corsair\\CORSAIR iCUE5 Software\\";
             }
             if(File.Exists("C:\\Program Files (x86)\\Corsair\\CORSAIR iCUE5 Software\\iCUE.exe")){
-                iCue_Path = "C:\\Program Files (x86)\\Corsair\\CORSAIR iCUE5 Software\\iCUE.exe";
+                iCue_Path = "C:\\Program Files (x86)\\Corsair\\CORSAIR iCUE5 Software\\";
             }
             while(iCue_Path == ""){
                 MessageBox.Show("iCue was not found in the default path, you will have to find it yourself (perhaps on a different drive?). Click Ok to pick the path.");
@@ -59,7 +59,10 @@ public partial class MainMenuForm : Form
                         }
                         
                     } else {
-                        MessageBox.Show("The directory was not picked, try again");
+                        MessageBox.Show("The directory was not picked, exiting");
+                        this.Close();
+                        Application.Exit();
+                        System.Environment.Exit(1); 
                     }
                 }
             }
